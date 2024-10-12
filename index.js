@@ -188,7 +188,7 @@ app.get('/stocks/sort/pricing', (req, res) => {
     result = stocksData.sort(sortStocksOnPriceHighToLow);
   }
 
-  res.json(result);
+  res.json({ stocks: result });
 });
 
 function sortStocksOnGrowthLowToHigh(stock1, stock2) {
@@ -209,7 +209,7 @@ app.get('/stocks/sort/growth', (req, res) => {
     result = stocksData.sort(sortStocksOnGrowthHighToLow);
   }
 
-  res.json(result);
+  res.json({ stocks: result });
 });
 
 function filterByExchange(stock, exchange) {
@@ -220,7 +220,7 @@ app.get('/stocks/filter/exchange', (req, res) => {
   let exchange = req.query.exchange;
   let result = stocks.filter((stock) => filterByExchange(stock, exchange));
 
-  res.json(result);
+  res.json({ stocks: result });
 });
 
 function filterByIndustry(stock, industry) {
@@ -231,11 +231,11 @@ app.get('/stocks/filter/industry', (req, res) => {
   let industry = req.query.industry;
   let result = stocks.filter((stock) => filterByIndustry(stock, industry));
 
-  res.json(result);
+  res.json({ stocks: result });
 });
 
 app.get('/stocks', (req, res) => {
-  res.json(stocks);
+  res.json({ stocks: stocks });
 });
 
 app.listen(port, () => {
